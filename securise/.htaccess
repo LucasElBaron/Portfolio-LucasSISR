@@ -1,0 +1,4 @@
+AuthUserFile C:\temp\1-SISR-baron-lucas\1-Portfolio\.htaccess
+AuthName "L'accès est sécurisé."
+AuthType Basic
+Require valid-user

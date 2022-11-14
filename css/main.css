@@ -595,6 +595,7 @@ body {
 
 .wrapper {
     margin: 0 auto;
+    flex-wrap: wrap;
 }
 
 
@@ -1420,10 +1421,13 @@ Change widths as necessary
     }
     /* 3 COLUMN GRID */
     .g1 {
-        width: 31.333%
+        width: auto
     }
     .g2 {
-        width: 64.667%;
+        width: 83.667%;
+    }
+    #resume .clearfix {
+        padding-left: 13%;
     }
     .g3 {
         width: 98.0%
