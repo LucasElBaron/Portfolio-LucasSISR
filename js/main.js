@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+
+
     // Logo
     var $logo = $('#logo');
     var $hellologo = $('#helloworld');

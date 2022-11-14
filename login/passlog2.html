@@ -1,0 +1,95 @@
+<html>
+
+<head>
+    <title>Tout JavaScript.com - Logins et mots de passe multiples - Comment �a marche ?</title>
+
+    <SCRIPT LANGUAGE="JavaScript">
+        // D'autres scripts sur http://www.toutjavascript.com
+        // Si vous utilisez ce script, vous devez laisser ce commentaire
+
+        function Calculer() {
+            var tab = "                   azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN0123456789_$&#@";
+            var login = document.forms[0].elements["login"].value;
+            var password = document.forms[0].elements["password"].value;
+            var nblog = login.length;
+            var nbpass = password.length;
+            var sum = 1;
+            var n = Math.max(nblog, nbpass)
+            for (var i = 0; i < n; i++) {
+                var index1 = tab.indexOf(login.substring(i, i + 1)) + 10;
+                var index2 = tab.indexOf(password.substring(i, i + 1)) + 10;
+                sum = sum + (index1 * n * (i + 1)) * (index2 * (i + 1) * (i + 1));
+            }
+
+            document.forms[0].elements["checksum"].value = sum;
+
+        }
+    </SCRIPT>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" alink="#000066" link="#000066" vlink="#000066">
+    <FONT FACE="Arial" SIZE='-1' COLOR="#000099">
+        <CENTER>
+            <BIG><B>Protection par logins et mots de passe multiples</B><BIG><BR><BR>
+Comment �a marche ?<BR>
+<TABLE width=500><TR><TD align='left'><FONT size='-1' face='Arial' color='#000099'>
+	Le principe est simple : le LOGIN est le nom de la page HTML qu'il prot&egrave;ge. 
+	Le navigateur charge donc la page <B>login+".html"</B> quand le couple LOGIN / MOT DE PASSE est valide.<BR>
+	Pour &eacute;viter de charger une page qui n'existe pas (cas d'un login erron&eacute;), 
+	on calcule une checksum &agrave partir des caract&egrave;res du login et du mot de passe saisi.<BR>
+	On compare ensuite cette checkcum avec celle du script. Si elles sont &eacute;gales, 
+	on a (presque) toutes les chances pour que le login saisi soit le bon. Ainsi, la page &agrave charger
+	existe et on ne risque pas l'erreur 404 - Page non trouv&eacute;e.<BR>
+	Cette checksum rend un chiffre assez grand (pour �viter de tomber par hasard sur la m&ecirc;me 
+	avec un mot de passe diff&eacute;rent). Mais elle ne permet pas de trouver le mot de passe. 
+	La seule solution pour trouver le login et le mot de passe est d'essayer toutes les combinaisons !<BR><BR>
+	Pour trouver la checksum d'un nouveau couple LOGIN / MOT DE PASSE, voyez la suite.<BR><BR>
+
+	Une fois que vous avez toutes les checksum de vos mots de passe, vous les ajoutez dans l'ent�te de la page
+	qui contient le formulaire de saisie de cette fa�on :<BR>
+	function Verifie() {<BR>
+	&nbsp;&nbsp;&nbsp;&nbsp;Check(1111111,2222222,3333333)<BR>
+	}<BR>
+	en rempla�ant par les vraies valeurs de checksum.
+	
+</FONT></TD></TR></TABLE>
+
+Entrez le login et le mot de passe associ�<BR>
+<FORM>
+	<TABLE border=0>
+		<TR><TD><FONT size=2 face="arial">LOGIN : </FONT></TD><TD><INPUT name="login" type='text' size=8></TD></TR>
+		<TR><TD><FONT size=2 face="arial">PASSWORD : </FONT></TD><TD><INPUT type="text" name="password" size=8></TD></TR>
+		<TR><TD colspan=2 align=center><INPUT type='button' value='Calculer la checksum' onClick="Calculer()"></TD></TR>
+		<TR><TD colspan=2 align=center><INPUT type='text' name="checksum" size=8></TD></TR>
+	</TABLE>
+
+
+
+</FORM><BR>
+
+
+<A HREF="passlog.html"><B>Retourner &agrave; la page de saisie du mot de passe</B></A>
+
+</CENTER>
+
+
+
+
+<BR>
+<BR>
+<BR>
+<BR>
+
+<BR>
+<BR>
+<CENTER><A href="http://www.toutjavascript.com"><FONT size="1" face="arial" color="#CCCCFF">Tout JavaScript.com</FONT></A></CENTER>
+
+
+
+</BODY>
+
+
+</HTML>
+
+<!-- Script d�velopp� par Olivier Hondermarck   -->
+<!-- D'autres scripts et des conseils sur http://www.toutjavascript.com -->
